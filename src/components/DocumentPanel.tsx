@@ -41,7 +41,7 @@ export function DocumentPanel({
   };
 
   return (
-    <div className="p-4 bg-[hsl(var(--card))] rounded-xl border border-[hsl(var(--border))]">
+    <div className="p-5 md:p-6 bg-[hsl(var(--card))] rounded-xl border border-[hsl(var(--border))]">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-sm font-medium text-[hsl(var(--foreground))] flex items-center gap-2">
           <FileText className="w-4 h-4" />

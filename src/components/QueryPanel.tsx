@@ -29,7 +29,7 @@ export function QueryPanel({
   };
 
   return (
-    <div className="p-4 bg-[hsl(var(--card))] rounded-xl border border-[hsl(var(--border))]">
+    <div className="p-5 md:p-6 bg-[hsl(var(--card))] rounded-xl border border-[hsl(var(--border))]">
       <h2 className="text-sm font-medium text-[hsl(var(--foreground))] mb-4 flex items-center gap-2">
         <Search className="w-4 h-4" />
         Query

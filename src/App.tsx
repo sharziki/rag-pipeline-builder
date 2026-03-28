@@ -132,7 +132,7 @@ function App() {
   const canRunPipeline = documents.length > 0 && query.trim().length > 0;
 
   return (
-    <div className="min-h-screen bg-[hsl(var(--background))] p-6">
+    <div className="min-h-screen bg-[hsl(var(--background))] p-6 md:p-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
@@ -140,13 +140,13 @@ function App() {
             <Database className="w-8 h-8 text-[hsl(var(--primary))]" />
             RAG Pipeline Builder
           </h1>
-          <p className="text-[hsl(var(--muted-foreground))] mt-2">
+          <p className="text-[hsl(var(--muted-foreground))] mt-2 text-base">
             Visualize and experiment with Retrieval-Augmented Generation
           </p>
         </div>
 
         {/* Pipeline Visualization */}
-        <div className="mb-6">
+        <div className="mb-8">
           <PipelineVisualization
             activeStep={activeStep}
             documentCount={documents.length}
@@ -156,9 +156,9 @@ function App() {
           />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
           {/* Left Column: Documents & Config */}
-          <div className="space-y-4">
+          <div className="space-y-6">
             <DocumentPanel
               documents={documents}
               chunks={chunks}
@@ -170,8 +170,8 @@ function App() {
             <ConfigPanel config={config} onConfigChange={setConfig} />
           </div>
 
-          {/* Middle Column: Query */}
-          <div className="space-y-4">
+          {/* Right Column: Query, Stats & Results */}
+          <div className="space-y-6">
             <QueryPanel
               query={query}
               onQueryChange={setQuery}
@@ -182,37 +182,37 @@ function App() {
             />
 
             {/* Stats */}
-            <div className="p-4 bg-[hsl(var(--card))] rounded-xl border border-[hsl(var(--border))]">
-              <h2 className="text-sm font-medium text-[hsl(var(--foreground))] mb-3">
+            <div className="p-5 md:p-6 bg-[hsl(var(--card))] rounded-xl border border-[hsl(var(--border))]">
+              <h2 className="text-sm font-medium text-[hsl(var(--foreground))] mb-4">
                 Pipeline Stats
               </h2>
-              <div className="grid grid-cols-2 gap-3">
-                <div className="p-2 bg-[hsl(var(--secondary))] rounded-lg">
-                  <div className="text-xs text-[hsl(var(--muted-foreground))]">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="p-3 bg-[hsl(var(--secondary))] rounded-lg">
+                  <div className="text-sm text-[hsl(var(--muted-foreground))]">
                     Documents
                   </div>
                   <div className="text-lg font-bold text-[#22c55e]">
                     {documents.length}
                   </div>
                 </div>
-                <div className="p-2 bg-[hsl(var(--secondary))] rounded-lg">
-                  <div className="text-xs text-[hsl(var(--muted-foreground))]">
+                <div className="p-3 bg-[hsl(var(--secondary))] rounded-lg">
+                  <div className="text-sm text-[hsl(var(--muted-foreground))]">
                     Chunks
                   </div>
                   <div className="text-lg font-bold text-[#3b82f6]">
                     {chunks.length}
                   </div>
                 </div>
-                <div className="p-2 bg-[hsl(var(--secondary))] rounded-lg">
-                  <div className="text-xs text-[hsl(var(--muted-foreground))]">
+                <div className="p-3 bg-[hsl(var(--secondary))] rounded-lg">
+                  <div className="text-sm text-[hsl(var(--muted-foreground))]">
                     Embeddings
                   </div>
                   <div className="text-lg font-bold text-[#8b5cf6]">
                     {embeddings.length}
                   </div>
                 </div>
-                <div className="p-2 bg-[hsl(var(--secondary))] rounded-lg">
-                  <div className="text-xs text-[hsl(var(--muted-foreground))]">
+                <div className="p-3 bg-[hsl(var(--secondary))] rounded-lg">
+                  <div className="text-sm text-[hsl(var(--muted-foreground))]">
                     Retrieved
                   </div>
                   <div className="text-lg font-bold text-[#ef4444]">
@@ -221,10 +221,7 @@ function App() {
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* Right Column: Results */}
-          <div>
             <ResultsPanel
               retrievedChunks={retrievedChunks}
               generatedResponse={generatedResponse}

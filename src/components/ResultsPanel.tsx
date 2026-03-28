@@ -12,7 +12,7 @@ export function ResultsPanel({
 }: ResultsPanelProps) {
   if (retrievedChunks.length === 0 && !generatedResponse) {
     return (
-      <div className="p-4 bg-[hsl(var(--card))] rounded-xl border border-[hsl(var(--border))]">
+      <div className="p-5 md:p-6 bg-[hsl(var(--card))] rounded-xl border border-[hsl(var(--border))]">
         <h2 className="text-sm font-medium text-[hsl(var(--foreground))] mb-4 flex items-center gap-2">
           <Target className="w-4 h-4" />
           Results
@@ -25,9 +25,9 @@ export function ResultsPanel({
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       {/* Retrieved Chunks */}
-      <div className="p-4 bg-[hsl(var(--card))] rounded-xl border border-[hsl(var(--border))]">
+      <div className="p-5 md:p-6 bg-[hsl(var(--card))] rounded-xl border border-[hsl(var(--border))]">
         <h2 className="text-sm font-medium text-[hsl(var(--foreground))] mb-4 flex items-center gap-2">
           <Target className="w-4 h-4" />
           Retrieved Chunks ({retrievedChunks.length})
@@ -79,7 +79,7 @@ export function ResultsPanel({
 
       {/* Generated Response */}
       {generatedResponse && (
-        <div className="p-4 bg-[hsl(var(--card))] rounded-xl border border-[hsl(var(--border))]">
+        <div className="p-5 md:p-6 bg-[hsl(var(--card))] rounded-xl border border-[hsl(var(--border))]">
           <h2 className="text-sm font-medium text-[hsl(var(--foreground))] mb-4 flex items-center gap-2">
             <MessageSquare className="w-4 h-4" />
             Generated Response
@@ -95,7 +95,7 @@ export function ResultsPanel({
 
       {/* Embedding Visualization */}
       {retrievedChunks.length > 0 && (
-        <div className="p-4 bg-[hsl(var(--card))] rounded-xl border border-[hsl(var(--border))]">
+        <div className="p-5 md:p-6 bg-[hsl(var(--card))] rounded-xl border border-[hsl(var(--border))]">
           <h2 className="text-sm font-medium text-[hsl(var(--foreground))] mb-4">
             Embedding Vectors (Simplified 2D Projection)
           </h2>
