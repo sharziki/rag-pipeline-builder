@@ -132,21 +132,23 @@ function App() {
   const canRunPipeline = documents.length > 0 && query.trim().length > 0;
 
   return (
-    <div className="min-h-screen bg-[hsl(var(--background))] p-6">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-8">
+    <div className="min-h-screen bg-[hsl(var(--background))]">
+      {/* Header */}
+      <header className="border-b border-[hsl(var(--border))] bg-[hsl(var(--card))]">
+        <div className="max-w-7xl mx-auto px-6 py-6">
           <h1 className="text-3xl font-bold text-[hsl(var(--foreground))] flex items-center justify-center gap-3">
             <Database className="w-8 h-8 text-[hsl(var(--primary))]" />
             RAG Pipeline Builder
           </h1>
-          <p className="text-[hsl(var(--muted-foreground))] mt-2">
+          <p className="text-[hsl(var(--muted-foreground))] mt-2 text-center text-base">
             Visualize and experiment with Retrieval-Augmented Generation
           </p>
         </div>
+      </header>
 
+      <main className="max-w-7xl mx-auto px-6 py-8">
         {/* Pipeline Visualization */}
-        <div className="mb-6">
+        <div className="mb-8">
           <PipelineVisualization
             activeStep={activeStep}
             documentCount={documents.length}
@@ -156,9 +158,9 @@ function App() {
           />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Left Column: Documents & Config */}
-          <div className="space-y-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Left Column: Documents, Config & Query */}
+          <div className="space-y-6">
             <DocumentPanel
               documents={documents}
               chunks={chunks}
@@ -168,10 +170,6 @@ function App() {
               onLoadSamples={loadSamples}
             />
             <ConfigPanel config={config} onConfigChange={setConfig} />
-          </div>
-
-          {/* Middle Column: Query */}
-          <div className="space-y-4">
             <QueryPanel
               query={query}
               onQueryChange={setQuery}
@@ -180,51 +178,51 @@ function App() {
               activeStep={activeStep}
               canRun={canRunPipeline}
             />
+          </div>
 
+          {/* Right Column: Stats & Results */}
+          <div className="space-y-6">
             {/* Stats */}
-            <div className="p-4 bg-[hsl(var(--card))] rounded-xl border border-[hsl(var(--border))]">
-              <h2 className="text-sm font-medium text-[hsl(var(--foreground))] mb-3">
+            <div className="p-5 bg-[hsl(var(--card))] rounded-2xl border border-[hsl(var(--border))]">
+              <h2 className="text-base font-medium text-[hsl(var(--foreground))] mb-4">
                 Pipeline Stats
               </h2>
-              <div className="grid grid-cols-2 gap-3">
-                <div className="p-2 bg-[hsl(var(--secondary))] rounded-lg">
-                  <div className="text-xs text-[hsl(var(--muted-foreground))]">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="p-3 bg-[hsl(var(--secondary))] rounded-lg">
+                  <div className="text-sm text-[hsl(var(--muted-foreground))]">
                     Documents
                   </div>
-                  <div className="text-lg font-bold text-[#22c55e]">
+                  <div className="text-xl font-bold text-[#22c55e]">
                     {documents.length}
                   </div>
                 </div>
-                <div className="p-2 bg-[hsl(var(--secondary))] rounded-lg">
-                  <div className="text-xs text-[hsl(var(--muted-foreground))]">
+                <div className="p-3 bg-[hsl(var(--secondary))] rounded-lg">
+                  <div className="text-sm text-[hsl(var(--muted-foreground))]">
                     Chunks
                   </div>
-                  <div className="text-lg font-bold text-[#3b82f6]">
+                  <div className="text-xl font-bold text-[#3b82f6]">
                     {chunks.length}
                   </div>
                 </div>
-                <div className="p-2 bg-[hsl(var(--secondary))] rounded-lg">
-                  <div className="text-xs text-[hsl(var(--muted-foreground))]">
+                <div className="p-3 bg-[hsl(var(--secondary))] rounded-lg">
+                  <div className="text-sm text-[hsl(var(--muted-foreground))]">
                     Embeddings
                   </div>
-                  <div className="text-lg font-bold text-[#8b5cf6]">
+                  <div className="text-xl font-bold text-[#8b5cf6]">
                     {embeddings.length}
                   </div>
                 </div>
-                <div className="p-2 bg-[hsl(var(--secondary))] rounded-lg">
-                  <div className="text-xs text-[hsl(var(--muted-foreground))]">
+                <div className="p-3 bg-[hsl(var(--secondary))] rounded-lg">
+                  <div className="text-sm text-[hsl(var(--muted-foreground))]">
                     Retrieved
                   </div>
-                  <div className="text-lg font-bold text-[#ef4444]">
+                  <div className="text-xl font-bold text-[#ef4444]">
                     {retrievedChunks.length}
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* Right Column: Results */}
-          <div>
             <ResultsPanel
               retrievedChunks={retrievedChunks}
               generatedResponse={generatedResponse}
@@ -232,22 +230,16 @@ function App() {
           </div>
         </div>
 
-        <p className="text-center text-xs text-[hsl(var(--muted-foreground))] mt-6">
+        <p className="text-center text-sm text-[hsl(var(--muted-foreground))] mt-8">
           Educational RAG pipeline demonstration. Uses simplified embeddings for visualization.
         </p>
-        <footer className="mt-8 py-4 text-center text-xs text-[hsl(var(--muted-foreground))] border-t border-[hsl(var(--border))]">
-          Made by{' '}
-          <a 
-            href="https://github.com/sharziki" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-[hsl(var(--primary))] hover:underline"
-          >
-            Sharvil Saxena
-          </a>
-        </footer>
+      </main>
 
-      </div>
+      <footer className="border-t border-[hsl(var(--border))] mt-12">
+        <div className="max-w-7xl mx-auto px-6 py-6 text-center text-sm text-[hsl(var(--muted-foreground))]">
+          Made by Sharvil Saxena
+        </div>
+      </footer>
     </div>
   );
 }
